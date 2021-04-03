@@ -1,0 +1,46 @@
+<app-header></app-header>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<div class="flex-container">
+    <div class="forms-group" >
+        <h1 class="Login_name">
+            Sign Up
+        </h1>
+        <br>
+    
+        <form>
+            <div class="form-group">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required placeholder="Enter email"  style="width:200px;margin-left:200px;" name="emailId" [(ngModel)]="emailId">
+        
+    </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="exampleInputUsername1" placeholder="UserName" required style="max-width: max-content;margin-left:200px;" name="customerName" [(ngModel)]="customerName">
+        </div>
+        <div class="form-group">
+            <input type="tel" class="form-control" placeholder="MobileNumber" mrequired style="max-width: max-content;margin-left:200px;" name="mobileNumber" [(ngModel)]="mobileNumber">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required style="max-width: max-content;margin-left:200px;" name="password" [(ngModel)]="password">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirm Password" name="confirmpassword" [(ngModel)]="confirmpassword" required style="max-width: max-content;margin-left:200px;" >
+          </div>
+          
+        <button (click)="Signup()">SignUp</button>
+        <p>Already A User?<a routerLink="/login">Log In</a></p>
+    </form>
+    </div>
+    <div class="image-class">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7cmF5o-sIrgQm9-UzkIq-_7larWpdEGUWWA&usqp=CAU" alt="carpool" width="500px">
+    </div>
+    
+</div>
+
+
+{{customerName}}
+{{emailId}}
+{{mobileNumber}}
+{{password}}

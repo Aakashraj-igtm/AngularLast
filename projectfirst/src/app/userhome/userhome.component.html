@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">User</span>
+        <div>
+            <button  class="btn btn-primary"><a href="user/home" style="text-decoration:none;color:white">Home</a></button>
+            <button  class="btn btn-primary"><a href="user/profile" style="text-decoration:none;color:white">Profile</a></button>
+            <button class="btn btn-primary" (click)="userlogout()">Log Out</button>
+        </div>
+    </div>
+</nav>
+<div class="container">
+ <div   class="card-class" style="display: grid;grid-template-columns:auto auto;">
+    
+    <div *ngFor="let item of data" style="text-align:center;font-size: 20px;font-weight: 500;padding:10px 10px;margin: 20px 20px;background-color:#e4decd;border-radius:10px;width:fit-content;height:auto">
+        <div>Place  -  {{item.startPoint}}</div>
+        <div>Place  -  {{item.endPoint}}</div>
+        <div>1}</div>
+        <div ><span style="margin-right: 20px;">{{item.distance}}</span> <span style="color: rgb(0, 255, 13);font-weight: 500;">{{item.seats}}-seats</span></div>
+        <div>878</div>
+        <span style="margin-right: 20px;"><button class="btn btn-danger" (click)="book(item)">book</button></span><span>2</span>
+       
+    </div>
+    
+    
+
+ </div>
+ <div *ngIf="bookdata">
+    <div class="cardupdate" style="margin: 50px 50px;">
+ 
+        <div style="background-color: #e4decd; width:300px;border-radius: 10px;height: auto" >
+        <div style="text-align: center;padding: 5px;">Place - <span style="font-size:20px;font-weight: 500;">{{bookdata.source}} </span>to Place- <span>{{bookdata.destination}}</span></div>
+        <div style="text-align: center;padding: 5px;"><span style="font-size:20px;font-weight: 500;">{{bookdata.carmodel}}</span></div>
+        <div style="text-align: center;padding: 5px;">{{bookdata.registration}}</div>
+        <div style="text-align: center;padding: 5px;">{{bookdata.time}}</div>
+        <div style="text-align: center;padding: 5px;"><button class="btn btn-success">book/cancle</button></div>
+        <div style="margin: 10px;padding: 10px;"><h3>Contact</h3>
+            <p>Name:</p>
+            <p>Contact</p>
+        </div>
+        
+        </div>
+        
+     </div>
+ </div>
+ 
+</div>

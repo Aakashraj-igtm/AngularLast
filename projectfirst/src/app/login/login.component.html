@@ -1,0 +1,26 @@
+
+<app-header></app-header>
+<div class="flex-container">
+    <div class="forms-group" >
+        <h1 class="Login_name">
+            Login 
+        </h1>
+        <br>
+    
+        <form>
+            <div class="form-group">
+          <input type="email" name="email" [(ngModel)]="emailId" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required style="max-width:max-content;margin-left:200px;">
+        
+    </div>
+        <div class="form-group">
+          <input type="password"  name="password"  [(ngModel)]="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required style="max-width: max-content;margin-left:200px;">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="postLogin()">Login</button><br><br>
+        <p>New User?<a routerLink="/signup">Sign Up</a></p>
+    </form>
+    </div>
+    <div class="image-class">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7cmF5o-sIrgQm9-UzkIq-_7larWpdEGUWWA&usqp=CAU" alt="carpool" width="500px">
+    </div>
+    
+</div>
