@@ -7,26 +7,38 @@ import { RouterModule, Routes ,Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-   
-  emailId:string;
-  password:string;
+  loginstatus:string='0';
+  emailId!: string;
+  password!: string;
   constructor(private http:HttpClient,private router:Router) { }
 
   postLogin()
   {
-    var obs = this.http.post("http://localhost:8080/user/login",{emailId:this.emailId,password:this.password})
+    if(this.emailId=='admin'&&this.password=='admin')
+    {
+      localStorage.setItem('AdminUse','1');
+      this.router.navigate(['admin/route']);
+    }
+    else{
+    var obs = this.http.post("http://localhost:8080/login",{emailId:this.emailId,password:this.password})
     obs.subscribe((res)=>{
       if(res)
       {
+        this.loginstatus='1';
+        localStorage.setItem('emaildetails',this.emailId);
+        
         console.log("successful");
-        this.router.navigate(['/admin/route']);
-
       }
       else{
-        console.log(" un  ")
+        this.loginstatus='0';
+        console.log(" unsuccessful");
+        alert('Invalid credentials');
+        //window.location.reload();
       }
     })
+    localStorage.setItem('SessionUse',this.loginstatus);
+    this.router.navigate(['userhome'])
+  }
   }
   ngOnInit(): void {
   }

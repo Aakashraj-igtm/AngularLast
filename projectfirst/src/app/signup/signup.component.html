@@ -13,20 +13,20 @@
     
         <form>
             <div class="form-group">
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required placeholder="Enter email" style="width:200px;margin-left:200px;" name="emailId" [(ngModel)]="emailId">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required placeholder="Enter email"  style="width:200px;margin-left:200px;" name="emailId" [(ngModel)]="emailId">
         
     </div>
         <div class="form-group">
           <input type="text" class="form-control" id="exampleInputUsername1" placeholder="UserName" required style="max-width: max-content;margin-left:200px;" name="customerName" [(ngModel)]="customerName">
         </div>
         <div class="form-group">
-            <input type="tel" class="form-control" placeholder="MobileNumber" maxlength="10" required style="max-width: max-content;margin-left:200px;" name="mobileNumber" [(ngModel)]="mobileNumber">
+            <input type="tel" class="form-control" placeholder="MobileNumber" mrequired style="max-width: max-content;margin-left:200px;" name="mobileNumber" [(ngModel)]="mobileNumber">
           </div>
           <div class="form-group">
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required style="max-width: max-content;margin-left:200px;" name="password" [(ngModel)]="password">
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirm Password"max="10"required style="max-width: max-content;margin-left:200px;" >
+            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirm Password" name="confirmpassword" [(ngModel)]="confirmpassword" required style="max-width: max-content;margin-left:200px;" >
           </div>
           
         <button (click)="Signup()">SignUp</button>

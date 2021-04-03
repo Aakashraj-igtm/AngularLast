@@ -69,8 +69,30 @@ export class AdminhomeComponent implements OnInit {
   adminhomeclick(){
       this.router.navigate(['adminHome']);
   }
+  adminrouteclick()
+  {
+    this.router.navigate(['admin/route'])
+  }
   adminlogoutclick(){
+    localStorage.setItem('AdminUse','0');
     this.router.navigate(['login']);
+  }
+  addClick()
+  {
+    var obs = this.httpClient.post("http://localhost:8080/admin/saveEmployee",{username:this.username,email:this.email,mobileNumber:this.mobileNumber,password:this.password,vehicleModel:this.vehicleModel,vehicleNumber:this.vehicleNumber,role:'driver'})
+    obs.subscribe((res)=>{
+      if(res)
+      {
+        console.log("successful");
+        alert('User Added');
+     window.location.reload()
+
+      }
+      else{
+        alert('Unsuccessful');
+        window.location.reload()
+      }
+    })
   }
   updateclick(){
     var obs = this.httpClient.put("http://localhost:8080/admin/editEmployee/"+this.employeeId,{username:this.username,email:this.email,mobileNumber:this.mobileNumber,password:this.password,vehicleModel:this.vehicleModel,vehicleNumber:this.vehicleNumber,role:'driver'})

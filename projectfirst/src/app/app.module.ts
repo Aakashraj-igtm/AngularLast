@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {NgxWebstorageModule} from 'ngx-webstorage';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AdminhomeComponent } from './adminhome/adminhome.component';
@@ -13,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UserComponent } from './user/user.component';
 import { UserhomeComponent } from './userhome/userhome.component';
 import { HeaderComponent } from './header/header.component';
+import {AuthguardServiceService} from './authguard-service.service'
 
 @NgModule({
   declarations: [
@@ -31,9 +33,10 @@ import { HeaderComponent } from './header/header.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    NgxWebstorageModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthguardServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,7 +13,7 @@
         <span class="navbar-brand mb-0 h1">ADMIN</span>
         <div>
             <button (click)="adminhomeclick()">Home</button>
-            <button>Profile</button>
+            <button (click)="adminrouteclick()">Route</button>
             <button (click)="adminlogoutclick()">Log Out</button>
         </div>
     </div>
@@ -107,6 +107,7 @@
                     <br><br>
                     <input name="password" [(ngModel)]="password" type="password" placeholder="Enter Password" />
                     <br>
+                    <button (click)="addClick()">Add</button>
                     <br>
                     <br>
                     <button (click)="updateclick()">Update</button>

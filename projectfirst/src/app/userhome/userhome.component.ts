@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import { RouterModule, Routes ,Router} from '@angular/router';
 @Component({
   selector: 'app-userhome',
   templateUrl: './userhome.component.html',
@@ -10,9 +11,22 @@ export class UserhomeComponent implements OnInit {
   data:any;
   bookdata:any;
   val:any;
-  constructor() {
+  constructor(private http:HttpClient,private router:Router) {
+
+    let  obs= this.http.get('http://localhost:8080/routes',{observe:'response'});
+    obs.subscribe(
+      (response)=>{
+       // console.log(JSON.stringify(response.body));
+        this.data=response.body;
+        console.log(this.data);
+      });
+     
+
+      
+
+
     
-    this.data=[{
+   /* this.data=[{
       source:"hyd1",
       destination:"benglore",
       time:"5:40pm",
@@ -58,7 +72,7 @@ export class UserhomeComponent implements OnInit {
       seats:"2",
       carmodel:"shift",
       registration:"T23423H1"
-    })
+    })*/
 
 
 
@@ -68,6 +82,12 @@ export class UserhomeComponent implements OnInit {
 
 
 
+   }
+   userlogout()
+   { 
+     localStorage.clear();
+     localStorage.setItem('SessionUse','0');
+     this.router.navigate(['login']);
    }
    book(val)
    {

@@ -21,26 +21,26 @@
     
         <form>
             <div class="form-group">
-          <input type="text" class="form-control" id="exampleInputName1" aria-describedby="UserName" required placeholder="Enter name" style="width:300px;margin-left:135px;">
+          <input type="text" class="form-control" name="customerName" [(ngModel)]="customerName" aria-describedby="UserName" required placeholder="Enter name" style="width:300px;margin-left:135px;">
       </div>
      
 
       <div class="form-group">
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required
+        <input type="email" class="form-control" name="emailId" id="emailId" [(ngModel)]="emailId" placeholder="Enter email" required
           style="width:300px;margin-left:135px;">
       </div>
       <div class="form-group">
-        <input type="tel" class="form-control" id="exampleInputNumber1" pattern="\d{10}" placeholder="Enter mobile"
+        <input type="tel" class="form-control" id="mobileNumber" name="mobileNumber" [(ngModel)]="mobileNumber" pattern="\d{10}" placeholder="Enter mobile"
           maxlength="10" required style="width:300px;margin-left:135px;">
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password" required
+        <input type="password" class="form-control" id="password" name="password"  [(ngModel)]="password" placeholder="Enter Password" required
           style="width:300px;margin-left:135px;">
       </div>
           
-        <input type="submit" class="btn btn-primary" value="Update">
+        <input type="submit" class="btn btn-primary" (click)="updateclick()" value="Update">
+       
     </form>
     </div>
-   
-    
+  
 </div>
