@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     if(this.emailId=='admin'&&this.password=='admin')
     {
       localStorage.setItem('AdminUse','1');
-      this.router.navigate(['admin/route']);
+      this.router.navigate(['admin']);
     }
     else{
     var obs = this.http.post("http://localhost:8080/login",{emailId:this.emailId,password:this.password})

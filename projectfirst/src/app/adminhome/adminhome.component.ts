@@ -79,6 +79,20 @@ export class AdminhomeComponent implements OnInit {
   }
   addClick()
   {
+    var regex=/^([a-z 0-9\.-]+)@([a-z0-9-]+).([a-z]{2,8})(.[a-z]{2,8})?$/;
+    var phn=/^[6-9][0-9]{9}/;
+    if(!(regex.test(this.email)))
+    {
+      alert('Email validation failed');
+      window.location.reload();
+      return;
+    }
+    if(!(phn.test(this.mobileNumber)))
+    {
+      alert('Mobile validation failed');
+      window.location.reload();
+      return;
+    }
     var obs = this.httpClient.post("http://localhost:8080/admin/saveEmployee",{username:this.username,email:this.email,mobileNumber:this.mobileNumber,password:this.password,vehicleModel:this.vehicleModel,vehicleNumber:this.vehicleNumber,role:'driver'})
     obs.subscribe((res)=>{
       if(res)
@@ -119,6 +133,8 @@ export class AdminhomeComponent implements OnInit {
      )
   }
   editButton(employeeId:string){
+    document.getElementById("addbutton").style.visibility="hidden";
+    document.getElementById("updatebutton").style.visibility="visible";
     let em,da,am;
     console.log(this.data1.length);
     for(let i=0;i<this.data1.length;i++){

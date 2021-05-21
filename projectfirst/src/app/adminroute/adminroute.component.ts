@@ -9,14 +9,17 @@ import { RouterModule, Routes ,Router} from '@angular/router';
 export class AdminrouteComponent implements OnInit {
 
   data1:any=[];
+  id!:any;
   startPoint!:string;
   endPoint!:string;
   mobileNumber!:number;
-  seats!:string;
-  date!:string;
+  seats!:number;
+  date!:any;
   time!:string;
   distance!:number;
   vehicleModel!:string;
+  drivername!:string;
+  email!:string;
   vehicleNumber!:string;
 
   data2:any=[];
@@ -25,8 +28,6 @@ export class AdminrouteComponent implements OnInit {
   data:any;
   constructor(private httpClient:HttpClient,private router:Router) {
 
-    this.date=new Date().toLocaleDateString();
-    this.time=new Date().toLocaleTimeString();
 
     let  obs= this.httpClient.get('http://localhost:8080/admin/getDriverRoutes',{observe:'response'});
     obs.subscribe(  (response)=>{
@@ -75,7 +76,66 @@ console.log(i)
   
   }
    }
+   deleteRoute(items)
+   {
+    
+
+    console.log(items);
+    var obs = this.httpClient.delete("http://localhost:8080/deleteRoutes/"+items.id)
+    obs.subscribe((res)=>{
+      if(res)
+      {
+        alert('Deleted')
+        window.location.reload();
+      }
+      else{
+        alert('Not deleted')
+        
+      }
+    });
+   }
+   editRoute(item){
+    this.id=item.id;
+    this.email=item.email;
+     this.startPoint=item.startPoint;
+     this.endPoint=item.endPoint;
+     this.date=item.date;
+     this.time=item.time;
+     this.mobileNumber=item.mobileNumber;
+     this.distance=item.distance;
+     this.vehicleModel=item.vehicleModel;
+     this.vehicleNumber=item.vehicleNumber;
+     this.seats=item.seats;
+     this.drivername=item.drivername;
+     /*  int routeId, String startPoint, String endPoint, int distance, int seats,
+			String drivername, Long mobileNumber, String email, String vehicleModel, String vehicleNumber, String date,
+			String time */
+    
+
+   }
+   updateRoute()
+   {
+     
+    var obs = this.httpClient.put("http://localhost:8080/editRoutes/"+this.id,{vehicleNumber:this.vehicleNumber,vehicleModel:this.vehicleModel,drivername:this.drivername,email:this.email,startPoint:this.startPoint,endPoint:this.endPoint,seats:this.seats,mobileNumber:this.mobileNumber,time:this.time,date:this.date,distance:this.distance})
+    obs.subscribe((response)=>{
+     console.log(response)
+     alert('User Updated');
+     window.location.reload()
+    })
+   }
+
+
    addclick(){
+     if(!(this.seats>=0 && this.seats<5))
+     {
+       alert('You can give seats in range [1-4]');
+       return;
+     }
+     if(!(this.distance>0))
+     {
+       alert('distance is not valid');
+       return;
+     }
      
     var obs = this.httpClient.post("http://localhost:8080/admin/addroutes",{startPoint:this.startPoint,endPoint:this.endPoint,mobileNumber:this.mobileNumber,distance:this.distance,seats:this.seats,date:this.date,time:this.time});
     obs.subscribe((res)=>{
@@ -91,6 +151,11 @@ console.log(i)
         window.location.reload()
       }
     })
+   }
+   logoutclick()
+   {
+     console.log('hi')
+     this.router.navigate(['/login']);
    }
     
   ngOnInit(): void {

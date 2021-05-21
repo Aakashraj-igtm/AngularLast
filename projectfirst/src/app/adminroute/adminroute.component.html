@@ -1,147 +1,69 @@
+
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
     <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">Admin</span>
         <div>
             <button  class="btn btn-primary"><a href="admin" style="text-decoration:none;color:white">Home</a></button>
-            <button  class="btn btn-primary"><a href="admin/route" style="text-decoration:none;color:white">Route</a></button>
-            <button class="btn btn-primary">Log Out</button>
+            <button  class="btn btn-primary"><a href="admin/route" style="text-decoration:none;color:white;font-weight:  bold;">Route</a></button>
+            <button class="btn btn-primary" (click)="logoutclick()" >Log Out</button>
         </div>
     </div>
 </nav>
+<div class="nav-search">
+    <nav style="text-align: center" class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <form class="d-flex" style="margin:auto;">
+                <input class="form-control me-5" type="search" placeholder="Type to search here" aria-label="Search">
+                <button style="margin-right: 10px" class="btn btn-outline-success" type="submit">Search</button>
+  
+            </form>
+        </div>
+    </nav>
+</div>
 <div class="container">
-    <div class="check" *ngIf="data">
-    <div class="card-class" *ngFor="let item of data1" style="display: grid;grid-template-columns:auto auto;">
-        <div style="text-align:center;font-size: 20px;font-weight: 500;padding:10px 10px;margin: 20px 20px;background-color:#e4decd;border-radius:10px;width:fit-content;height:auto">
-            <div>Place  -  {{item.startPoint}}</div>
-            <div>Place  -  {{item.endPoint}}</div>
-            <div>{{item.time}}</div>
-            <div ><span style="margin-right: 20px;">{{data1.distance}}</span> <span style="color: rgb(0, 255, 13);font-weight: 500;">{{item.seats}}-seats</span></div>
+    <div class="flex-container" *ngIf="data1">
+    <div class="card-class" *ngFor="let item of data1">
+        <div>
+            <div>{{item.startPoint}}</div>
+            <div>to</div>
+            <div>{{item.endPoint}}</div>
+            <div>Date - {{item.date}} </div>
+            <div>Time - {{item.time}}</div>
+            <div ><span style="margin-right: 20px;">{{item.distance}} km </span> <span style="color: rgb(0, 255, 13);font-weight: 500;">filled {{item.seats}}-seats</span></div>
             <div>{{item.vehicleModel}}</div>
-            <span style="margin-right: 20px;"><button class="btn btn-danger">delete</button></span><span>{{item.vehicleNumber}}</span>
+            <pre><button class="btn-danger" (click)="deleteRoute(item)">delete</button>  <button class="btn-danger" (click)="editRoute(item)">Edit</button></pre>
+            <span>{{item.vehicleNumber}}</span>
         </div>
     </div>
     </div>
     
- <!--<div class="card-class" style="display: grid;grid-template-columns:auto auto;">
-    <div style="text-align:center;font-size: 20px;font-weight: 500;padding:10px 10px;margin: 20px 20px;background-color:#e4decd;border-radius:10px;width:fit-content;height:auto">
-        <div>Place  -  {{data.source}}</div>
-        <div>Place  -  {{data.destination}}</div>
-        <div>{{data.time}}</div>
-        <div ><span style="margin-right: 20px;">{{data.distance}}</span> <span style="color: rgb(0, 255, 13);font-weight: 500;">{{data.seats}}-seats</span></div>
-        <div>{{data.carmodel}}</div>
-        <span style="margin-right: 20px;"><button class="btn btn-danger">delete</button></span><span>{{data.registration}}</span>
-    </div>
-    <div style="text-align:center;font-size: 20px;font-weight: 500;padding:10px 10px;margin: 20px 20px;background-color:#e4decd;border-radius:10px;width:fit-content;height:auto">
-        <div>Place  -  {{data.source}}</div>
-        <div>Place  -  {{data.destination}}</div>
-        <div>{{data.time}}</div>
-        <div ><span style="margin-right: 20px;">{{data.distance}}</span> <span style="color: rgb(0, 255, 13);font-weight: 500;">{{data.seats}}-seats</span></div>
-        <div>{{data.carmodel}}</div>
-        <span style="margin-right: 20px;"><button class="btn btn-danger">delete</button></span><span>{{data.registration}}</span>
-    </div>
-    <div style="text-align:center;font-size: 20px;font-weight: 500;padding:10px 10px;margin: 20px 20px;background-color:#e4decd;border-radius:10px;width:fit-content;height:auto">
-        <div>Place  -  {{data.source}}</div>
-        <div>Place  -  {{data.destination}}</div>
-        <div>{{data.time}}</div>
-        <div ><span style="margin-right: 20px;">{{data.distance}}</span> <span style="color: rgb(0, 255, 13);font-weight: 500;">{{data.seats}}-seats</span></div>
-        <div>{{data.carmodel}}</div>
-        <span style="margin-right: 20px;"><button class="btn btn-danger">delete</button></span><span>{{data.registration}}</span>
-    </div>
-    <div style="text-align:center;font-size: 20px;font-weight: 500;padding:10px 10px;margin: 20px 20px;background-color:#e4decd;border-radius:10px;width:fit-content;height:auto">
-        <div>Place  -  {{data.source}}</div>
-        <div>Place  -  {{data.destination}}</div>
-        <div>{{data.time}}</div>
-        <div ><span style="margin-right: 20px;">{{data.distance}}</span> <span style="color: rgb(0, 255, 13);font-weight: 500;">{{data.seats}}-seats</span></div>
-        <div>{{data.carmodel}}</div>
-        <span style="margin-right: 20px;"><button class="btn btn-danger">delete</button></span><span>{{data.registration}}</span>
-    </div>
-    <div style="text-align:center;font-size: 20px;font-weight: 500;padding:10px 10px;margin: 20px 20px;background-color:#e4decd;border-radius:10px;width:fit-content;height:auto">
-        <div>Place  -  {{data.source}}</div>
-        <div>Place  -  {{data.destination}}</div>
-        <div>{{data.time}}</div>
-        <div ><span style="margin-right: 20px;">{{data.distance}}</span> <span style="color: rgb(0, 255, 13);font-weight: 500;">{{data.seats}}-seats</span></div>
-        <div>{{data.carmodel}}</div>
-        <span style="margin-right: 20px;"><button class="btn btn-danger">delete</button></span><span>{{data.registration}}</span>
-    </div>
-    <div style="text-align:center;font-size: 20px;font-weight: 500;padding:10px 10px;margin: 20px 20px;background-color:#e4decd;border-radius:10px;width:fit-content;height:auto">
-        <div>Place  -  {{data.source}}</div>
-        <div>Place  -  {{data.destination}}</div>
-        <div>{{data.time}}</div>
-        <div ><span style="margin-right: 20px;">{{data.distance}}</span> <span style="color: rgb(0, 255, 13);font-weight: 500;">{{data.seats}}-seats</span></div>
-        <div>{{data.carmodel}}</div>
-        <span style="margin-right: 20px;"><button class="btn btn-danger">delete</button></span><span>{{data.registration}}</span>
-    </div>
-    <div style="text-align:center;font-size: 20px;font-weight: 500;padding:10px 10px;margin: 20px 20px;background-color:#e4decd;border-radius:10px;width:fit-content;height:auto">
-        <div>Place  -  {{data.source}}</div>
-        <div>Place  -  {{data.destination}}</div>
-        <div>{{data.time}}</div>
-        <div ><span style="margin-right: 20px;">{{data.distance}}</span> <span style="color: rgb(0, 255, 13);font-weight: 500;">{{data.seats}}-seats</span></div>
-        <div>{{data.carmodel}}</div>
-        <span style="margin-right: 20px;"><button class="btn btn-danger">delete</button></span><span>{{data.registration}}</span>
-    </div>
-    <div style="text-align:center;font-size: 20px;font-weight: 500;padding:10px 10px;margin: 20px 20px;background-color:#e4decd;border-radius:10px;width:fit-content;height:auto">
-        <div>Place  -  {{data.source}}</div>
-        <div>Place  -  {{data.destination}}</div>
-        <div>{{data.time}}</div>
-        <div ><span style="margin-right: 20px;">{{data.distance}}</span> <span style="color: rgb(0, 255, 13);font-weight: 500;">{{data.seats}}-seats</span></div>
-        <div>{{data.carmodel}}</div>
-        <span style="margin-right: 20px;"><button class="btn btn-danger">delete</button></span><span>{{data.registration}}</span>
-    </div>
-    <div style="text-align:center;font-size: 20px;font-weight: 500;padding:10px 10px;margin: 20px 20px;background-color:#e4decd;border-radius:10px;width:fit-content;height:auto">
-        <div>Place  -  {{data.source}}</div>
-        <div>Place  -  {{data.destination}}</div>
-        <div>{{data.time}}</div>
-        <div ><span style="margin-right: 20px;">{{data.distance}}</span> <span style="color: rgb(0, 255, 13);font-weight: 500;">{{data.seats}}-seats</span></div>
-        <div>{{data.carmodel}}</div>
-        <span style="margin-right: 20px;"><button class="btn btn-danger">delete</button></span><span>{{data.registration}}</span>
-    </div>
-    <div style="text-align:center;font-size: 20px;font-weight: 500;padding:10px 10px;margin: 20px 20px;background-color:#e4decd;border-radius:10px;width:fit-content;height:auto">
-        <div>Place  -  {{data.source}}</div>
-        <div>Place  -  {{data.destination}}</div>
-        <div>{{data.time}}</div>
-        <div ><span style="margin-right: 20px;">{{data.distance}}</span> <span style="color: rgb(0, 255, 13);font-weight: 500;">{{data.seats}}-seats</span></div>
-        <div>{{data.carmodel}}</div>
-        <span style="margin-right: 20px;"><button class="btn btn-danger">delete</button></span><span>{{data.registration}}</span>
-    </div>
-    <div style="text-align:center;font-size: 20px;font-weight: 500;padding:10px 10px;margin: 20px 20px;background-color:#e4decd;border-radius:10px;width:fit-content;height:auto">
-        <div>Place  -  {{data.source}}</div>
-        <div>Place  -  {{data.destination}}</div>
-        <div>{{data.time}}</div>
-        <div ><span style="margin-right: 20px;">{{data.distance}}</span> <span style="color: rgb(0, 255, 13);font-weight: 500;">{{data.seats}}-seats</span></div>
-        <div>{{data.carmodel}}</div>
-        <span style="margin-right: 20px;"><button class="btn btn-danger">delete</button></span><span>{{data.registration}}</span>
-    </div>
-    <div style="text-align:center;font-size: 20px;font-weight: 500;padding:10px 10px;margin: 20px 20px;background-color:#e4decd;border-radius:10px;width:fit-content;height:auto">
-        <div>Place  -  {{data.source}}</div>
-        <div>Place  -  {{data.destination}}</div>
-        <div>{{data.time}}</div>
-        <div ><span style="margin-right: 20px;">{{data.distance}}</span> <span style="color: rgb(0, 255, 13);font-weight: 500;">{{data.seats}}-seats</span></div>
-        <div>{{data.carmodel}}</div>
-        <span style="margin-right: 20px;"><button class="btn btn-danger">delete</button></span><span>{{data.registration}}</span>
-    </div>
 
- </div>-->
- <div class="cardupdate" style="margin: 50px 50px;">
+ <div class="cardupdate">
  
-    <div style="background-color: #e4decd; width:300px;border-radius: 10px;height: auto" >
+    <div>
         <div style="text-align: center;"><h4>Update-Add</h4></div>
     
-            <input type="text" placeholder="start" name="startPoint" [(ngModel)]="startPoint" style="padding:10px;margin:10px;width:100px;border-radius: 10px;border:none;border-radius: 2px;height:15px;">
-            <input type="text" placeholder="end" name="endPoint" [(ngModel)]="endPoint" style="padding:10px;margin: 10px;width:100px;border-radius: 10px;border:none;border-radius: 2px;height:15px;">
-            <br>
-    
-            <input type="text" placeholder="date"  name="date" [(ngModel)]="date" style="padding:10px;margin: 10px;width:100px;border-radius: 10px;border:none;border-radius: 2px;height:15px;">
-            <input type="text" placeholder="time" name="time" [(ngModel)]="time" style="padding:10px;margin: 10px;width:100px;border-radius: 10px;border:none;border-radius: 2px;height:15px;">
-            <br>
-            <input type="text" placeholder="seats" name="seats" [(ngModel)]="seats" style="padding:10px;margin: 10px;width:100px;border-radius: 10px;border:none;border-radius: 2px;height:15px;">
-            <input type="text" placeholder="distance" name="distance" [(ngModel)]="distance" style="padding:10px;margin: 10px;width:100px;border-radius: 10px;border:none;border-radius: 2px;height:15px;">
-            <br>
-            <input type="text" placeholder="mobile" name="mobileNumber" [(ngModel)]="mobileNumber" style="padding:10px;margin:10px;width:200px;border-radius: 10px;border:none;border-radius: 2px;height:15px;"><br>
-            <br>
-            <input type="text" placeholder="Car Model" name="vehicleModel" [(ngModel)]="vehicleModel" style="padding:10px;margin: 10px;width:100px;border-radius: 10px;border:none;border-radius: 2px;height:15px;">
-            <input type="text" placeholder="Car Registration No" name="vehicleNumber" [(ngModel)]="vehicleNumber" style="padding:10px;margin: 10px;width:auto;border-radius: 10px;border:none;border-radius: 2px;height:15px;">
-            <div><button style="margin-left: 30%;" type="button" class="btn btn-success">Update</button></div><br>
-            <div><button style="margin-left: 35%;"class="btn btn-success" type="button" (click)="addclick()">Add</button></div>
+            <input type="text" placeholder="start" name="startPoint" [(ngModel)]="startPoint" required >
+            <br><br>
+            <input type="text" placeholder="end" name="endPoint" [(ngModel)]="endPoint" required >
+            <br><br>
+            <input type="date" placeholder="date"  name="date" [(ngModel)]="date" required >
+            <br><br>
+            <input type="time" placeholder="time" name="time" [(ngModel)]="time" required  >
+            <br><br>
+            <input type="number" placeholder="seats" name="seats" [(ngModel)]="seats" required  >
+            <br><br>
+            <input type="text" placeholder="distance" name="distance" [(ngModel)]="distance" required >
+            <br><br>
+            <input type="text" placeholder="mobile" name="mobileNumber" [(ngModel)]="mobileNumber" required  >
+            <br><br>
+            <input type="text" placeholder="Car Model" name="vehicleModel" [(ngModel)]="vehicleModel" >
+            <br><br>
+            <input type="text" placeholder="Vehicle Number" name="vehicleNumber" [(ngModel)]="vehicleNumber">
+            <br><br>
+            <div><button type="button" class="btn btn-success" (click)="updateRoute()">Update</button></div><br>
+            <div><button class="btn btn-success" type="button" (click)="addclick()">Add</button></div>
     
  </div>
+</div>
 </div>

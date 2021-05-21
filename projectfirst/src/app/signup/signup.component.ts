@@ -41,6 +41,7 @@ export class SignupComponent implements OnInit {
     obs.subscribe((res)=>{
       if(res)
       {
+        alert('User Registered')
         this.router.navigate(['/login'])
       }
       else{

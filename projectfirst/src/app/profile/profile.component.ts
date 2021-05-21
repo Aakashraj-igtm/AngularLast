@@ -24,6 +24,8 @@ export class ProfileComponent implements OnInit {
 
   logOut()
   {
+    //localStorage.clear();
+    localStorage.setItem('SessionUse','0');
     this.router.navigate(['/login']);
   }
 

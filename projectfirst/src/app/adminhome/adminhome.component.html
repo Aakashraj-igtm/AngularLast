@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">ADMIN</span>
         <div>
-            <button (click)="adminhomeclick()">Home</button>
+            <button (click)="adminhomeclick()" style="font-weight: bold;">Home</button>
             <button (click)="adminrouteclick()">Route</button>
             <button (click)="adminlogoutclick()">Log Out</button>
         </div>
@@ -25,7 +25,7 @@
             <form class="d-flex" style="margin:auto;">
                 <input class="form-control me-5" type="search" placeholder="Type to search here" aria-label="Search">
                 <button style="margin-right: 10px" class="btn btn-outline-success" type="submit">Search</button>
-                <button class="btn btn-outline-success" type="submit">Search</button>
+  
             </form>
         </div>
     </nav>
@@ -43,10 +43,10 @@
             <hr>
             <br>
             <div>
-                <div *ngFor="let item of data1">
+                <div *ngFor="let item of data1;let i=index">
                     <table class="items" style="width:100%;margin-left: 10px;">
                         <tr>
-                            <td style="width:20%;padding-left:10px">1</td>
+                            <td style="width:20%;padding-left:10px">{{i+1}}</td>
                             <td style="width:20%;padding-left:10px">{{item.username}}</td>
                             <td style="width:40%;padding-left:20px">{{item.role}}</td>
                             <td style="width:20%;padding-left:20px">
@@ -71,13 +71,13 @@
                 <br>
                 <form style="line-height-step: 20;text-align: center;">
 
-                    <input type="text" [(ngModel)]="employeeId" name="employeeId" placeholder="Enter Employee Id" style="visibility: hidden;">
+                    <input type="text" [(ngModel)]="employeeId" name="employeeId" required placeholder="Enter Employee Id" style="visibility: hidden;">
                     <br><br>
-                    <input name="username" [(ngModel)]="username" type="text" placeholder="Enter Name" />
+                    <input name="username" [(ngModel)]="username" type="text" required placeholder="Enter Name" />
                     <br><br>
 
                     <span>add / edit Driver ?</span>
-                   <input type="checkbox" name="driver" id="driver" value="driver" (click)="toggle1()">
+                   <input type="checkbox" name="driver" id="driver" value="driver" required (click)="toggle1()">
 
 
                    <!-- <select name="role" id="role" (ngModelChange)="toggle($event)">
@@ -88,29 +88,32 @@
                     <br><br>
                     <div *ngIf="t1">
                         <p>Driver</p>
-                        <input type="text" name="vehicleModel" [(ngModel)]="vehicleModel" placeholder="registration number">
+                        <input type="text" name="vehicleModel" [(ngModel)]="vehicleModel" required placeholder="Vehicle Model">
                         <br>
                         <br>
-                        <input type="text" name="vehicleNumber" [(ngModel)]="vehicleNumber" placeholder="vehical number">
+                        <input type="text" name="vehicleNumber" [(ngModel)]="vehicleNumber" required placeholder="vehical number">
+                        <br>
+                        <br>
                     </div>
                     <div *ngIf="!t1">
-                        <input type="email" name="emailId" placeholder="email" [(ngModel)]="emailId">
+                        
+                        <input type="email" name="emailId" placeholder="email" required [(ngModel)]="emailId">
                     </div>
                     <div *ngIf="t1">
-
-                        <input type="email" name="email" placeholder="email" [(ngModel)]="email">
+                        
+                        <input type="email" name="email" placeholder="email" required [(ngModel)]="email">
                         <br>
                     </div>
                     
                     <br>
-                    <input name="mobileNumber" [(ngModel)]="mobileNumber" type="tel" pattern="\d{10}" placeholder="Enter Mobile">
+                    <input name="mobileNumber" [(ngModel)]="mobileNumber" type="tel" pattern="\d{10}" required placeholder="Enter Mobile">
                     <br><br>
-                    <input name="password" [(ngModel)]="password" type="password" placeholder="Enter Password" />
+                    <input name="password" [(ngModel)]="password" type="password" required placeholder="Enter Password" />
                     <br>
-                    <button (click)="addClick()">Add</button>
+                    <button (click)="addClick()" id="addbutton">Add</button>
                     <br>
                     <br>
-                    <button (click)="updateclick()">Update</button>
+                    <button (click)="updateclick()" id="updatebutton" style="visibility: hidden;">Update</button>
                     <br><br>
                 </form>
             </div>
